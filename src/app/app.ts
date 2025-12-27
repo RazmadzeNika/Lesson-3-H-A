@@ -1,12 +1,23 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Component, signal} from '@angular/core';
+import {RandomBackground} from './directives/random-background';
+import { DbClickDirective} from './directives/db-click';
+import {ElementClick} from './directives/element-click';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [
+    RandomBackground,
+    DbClickDirective,
+    ElementClick
+  ],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
 export class App {
-  protected readonly title = signal('lesson-3');
+  isHidden = signal(false);
+  count = signal<number>(0);
+
+  handleCount(count: number) {
+    this.count.set(count);
+  }
 }
